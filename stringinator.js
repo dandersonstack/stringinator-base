@@ -1,29 +1,31 @@
 const _ = require('./underbar');
 
 const first = function(str, n) {
-  // Your code goes here
+  return _.first(str, n);
 };
 
 const last = function(str, n) {
-  // Your code goes here
+  return _.last(str, n);
 };
 
 const removeChar = function(str, target) {
   // hint: use _.reject
-  // Your code goes here
+  const arr = _.reject(str, char => char == target)
+  return arr.join("");
 };
 
 const hasChar = function(str, target) {
   // hint: use _.some
-  // Your code goes here
+  return _.some(str, item => item === target);
 };
 
 const isOnlyDigits = function(str) {
-  // Your code goes here
+  return _.every(str, char => !isNaN(parseInt(char, 10)));
 };
 
 const filterToOnlyDigits = function(str) {
-  // Your code goes here
+  const arr = _.filter(str, char => !isNaN(parseInt(char, 10)));
+  return arr.join("");
 };
 
 const truncateString = function(val, maxLength) {
@@ -33,15 +35,24 @@ const truncateString = function(val, maxLength) {
 
 const truncateLongItems = function(obj, maxLength) {
   // hint: use truncateString above
-  // Your code goes here
+  return _.map(obj, item => truncateString(item.toString(), maxLength));
 };
 
 const countChars = function(str) {
-  // Your code goes here
+  const charCount = {};
+  _.each(str, item => {
+    if (item in charCount){
+      charCount[item] += 1;
+     }else {
+      charCount[item] = 1;
+     }
+  });
+  return charCount;
 };
 
 const dedup = function(str) {
-  // Your code goes here
+  const arr = _.uniq(str);
+  return arr.join("");
 };
 
 module.exports = {
